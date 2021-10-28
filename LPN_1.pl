@@ -77,14 +77,18 @@ jealous(X,Y):-  loves(X,Z),  loves(Y,Z).
 /*
 Nested Complex terms (recursive structure)
 - two arguments (arity = 2)
-- one is a variable
+- one is a variable (anonymous variable)
 - the other is a complex term father(father(father(butch)))
 */
-hide(X,father(father(father(butch)))).
+hide(_,father(father(father(butch)))).
 
 % Predicates need to be identified by functor and number of arguments (arity)
-loves(X,Y,Z). % loves/3
-loves(W,X,Y,Z). % loves/4
+% loves(X,Y,Z). % loves/3
+% loves(W,X,Y,Z). % loves/4
+
+% alternatively to the above, can use anonymous variables (_)
+loves(_,_,_). % loves/3
+loves(_,_,_,_). % loves/4
 
 /*
 Soundness vs completeness
