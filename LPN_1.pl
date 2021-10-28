@@ -85,3 +85,20 @@ hide(X,father(father(father(butch)))).
 % Predicates need to be identified by functor and number of arguments (arity)
 loves(X,Y,Z). % loves/3
 loves(W,X,Y,Z). % loves/4
+
+/*
+Soundness vs completeness
+- Prolog's proof procedure is sound because if Prolog can prove/derive a body g (conjunction of atoms), then we know
+g is a logical consequence of the KB such that g is true in every sensible interpretation of the KB
+
+- Prolog's proof procedure is not complete. Example below: we know that a is a logical consequence of the KB because
+in every model of the KB, a is true. However, Prolog will not be able to prove/derive a since it's proof procedure is top to bottom,
+will start with
+    - yes :- a.
+    - yes :- a. (using the rule a :- a)
+    - yes :- a. (using the rule a :- a again)
+    - etc. Infinitely recurse and will not be able to prove
+*/
+a :- a.
+a :- b.
+b.
